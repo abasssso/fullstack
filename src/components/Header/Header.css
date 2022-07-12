@@ -1,0 +1,22 @@
+.container {
+  /* margin: 10px 200px; */
+  /* display: flex; */
+  /* justify-content: flex-end; */
+}
+.navbar-container {
+  background-color: black;
+  padding: 30px 100px;
+  display: flex;
+  color: white;
+  justify-content: space-between;
+}
+.navbar-right {
+  display: flex;
+  width: 500px;
+  justify-content: space-evenly;
+}
+.logo {
+}
+p {
+  cursor: pointer;
+}
