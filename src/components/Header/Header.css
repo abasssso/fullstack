@@ -9,11 +9,17 @@
   display: flex;
   color: white;
   justify-content: space-between;
+  align-items: center;
 }
 .navbar-right {
   display: flex;
   width: 500px;
   justify-content: space-evenly;
+}
+.navbar-right-account {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
 }
 .logo {
 }

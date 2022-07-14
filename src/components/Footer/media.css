@@ -1,0 +1,10 @@
+@media all and (max-width: 425px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+  }
+  .footer-container-mid_media {
+    justify-content: space-between;
+  }
+}
