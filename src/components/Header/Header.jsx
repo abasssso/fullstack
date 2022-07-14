@@ -15,7 +15,7 @@ const Header = () => {
           <p onClick={() => navigate("/products")}>Bicycles</p>
           <p onClick={() => navigate("/insurance")}>Insurance</p>
           <p onClick={() => navigate("/contact")}>Contact</p>
-          <PersonIcon onClick={() => navigate("/account")} />
+          <PersonIcon onClick={() => navigate("/login")} />
           <ShoppingCartIcon onClick={() => navigate("/cart")} />
         </div>
       </div>
