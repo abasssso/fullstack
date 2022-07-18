@@ -1,17 +1,41 @@
-import React from "react";
-import "./Products.css";
+import React, {useContext, useState, useEffect} from "react";
+import {productsContext} from "../../Contexts/ProductsContext";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import Card from "../Card/Card";
 
 const Products = () => {
-  return (
-    <div className="products-list">
-      <div className="products-list_title">
-        <p style={{ color: "#B2B2B2" }}>Choose the best for you</p>
-        <h1 style={{ display: "flex", fontSize: "64px" }}>
-          our bikes<p style={{ color: "yellow" }}>.</p>
-        </h1>
-      </div>
-    </div>
-  );
+    const navigate = useNavigate()
+    const {getProducts, products, pages} = useContext(productsContext);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        getProducts();
+    }, []);
+
+    useEffect(() => {
+        getProducts();
+    }, [searchParams]);
+
+    useEffect(() => {
+        setSearchParams({
+            page: currentPage,
+        });
+    }, [currentPage]);
+
+
+    return (
+        <div>
+            <button onClick={() => navigate("/add")}>
+                Add product
+            </button>
+            <div>
+                {products.map(item => (
+                    <Card key={item.id} item={item}/>
+                ))}
+            </div>
+        </div>
+    )
 };
 
 export default Products;
