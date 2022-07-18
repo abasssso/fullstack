@@ -1,4 +1,4 @@
-import React, {useReducer} from "react";
+import React, { useReducer } from "react";
 import axios from "axios";
 
 export const productsContext = React.createContext();
@@ -38,28 +38,28 @@ function reducer(state = INIT_STATE, action) {
 
 const API = "https://thawing-brook-92190.herokuapp.com"
 
-const ProductsContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(reducer, INIT_STATE);
+const ProductsContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-    async function getProducts() {
-        try {
-            const tokens = JSON.parse(localStorage.getItem("tokens"));
-            //config
-            const Authorization = `Bearer ${tokens.access}`;
-            const config = {
-                headers: {
-                    Authorization,
-                },
-            };
-            const res = await axios(`${API}/products/`, config);
-            dispatch({
-                type: "GET_PRODUCTS",
-                payload: res.data,
-            });
-        } catch (err) {
-            console.log(err);
-        }
+  async function getProducts() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/products/`, config);
+      dispatch({
+        type: "GET_PRODUCTS",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
     }
+  }
 
     async function getCategories() {
         try {
@@ -79,6 +79,7 @@ const ProductsContextProvider = ({children}) => {
             console.log(err)
         }
     }
+  }
 
     async function createProduct(newProduct, navigate) {
         try {
@@ -98,6 +99,7 @@ const ProductsContextProvider = ({children}) => {
             console.log(err);
         }
     }
+  }
 
     async function deleteProduct(id) {
         try {
@@ -115,17 +117,21 @@ const ProductsContextProvider = ({children}) => {
             console.log(err);
         }
     }
+  }
 
-    return (
-        <productsContext.Provider value={{
-            products: state.products,
-            pages: state.pages,
-            categories: state.categories,
-            getProducts,
-            getCategories,
-            createProduct,
-            deleteProduct,
-        }}>{children}</productsContext.Provider>
-    )
-}
+  return (
+    <productsContext.Provider
+      value={{
+        products: state.products,
+        pages: state.pages,
+        categories: state.categories,
+        getProducts,
+        getCategories,
+        createProduct,
+        deleteProduct,
+      }}>
+      {children}
+    </productsContext.Provider>
+  );
+};
 export default ProductsContextProvider;
