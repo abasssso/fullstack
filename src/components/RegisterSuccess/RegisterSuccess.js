@@ -5,8 +5,9 @@ const RegisterSuccess = () => {
     return (
         <div>
             <div>
-                Your registration successful! You can <Link to="/login">login</Link>
+                Your registration successful! Check your email to activate account
             </div>
+            <div>Then try to <Link to="/login">login</Link></div>
         </div>
     );
 };

@@ -13,8 +13,8 @@ const AuthContextProvider = ({children}) => {
     async function handleRegister(formData, navigate) {
         setLoading(true);
         try {
-            const res = await axios.post(`${API}/account/register/`, formData);
-
+            const res = await axios.post(`${API}/account/registration/`, formData);
+            // console.log(res);
             navigate("/register-success");
         } catch (err) {
             setError(Object.values(err.response.data).flat(2));
@@ -29,9 +29,10 @@ const AuthContextProvider = ({children}) => {
             localStorage.setItem("tokens", JSON.stringify(res.data));
             localStorage.setItem("email", email);
             setCurrentUser(email);
-            navigate("/products");
+            navigate("/");
+            // console.log(res);
         } catch (err) {
-            console.log(err)
+            console.log(err);
             setError([err.response.data.detail]);
         }
     }
@@ -40,47 +41,61 @@ const AuthContextProvider = ({children}) => {
         setLoading(true);
         try {
             const tokens = JSON.parse(localStorage.getItem("tokens"));
+            //config
             const Authorization = `Bearer ${tokens.access}`;
             const config = {
                 headers: {
                     Authorization,
-                }
-            }
-            const res = axios.post(`${API}/account/token/refresh`, {
+                },
+            };
+            const res = await axios.post(
+                `${API}/account/refresh/`,
+                {
                     refresh: tokens.refresh,
                 },
                 config
-            )
-            localStorage.setItem("tokens",JSON.stringify({
-                access:res.data.access,
-                refresh:tokens.refresh,
-            }))
+            );
+            localStorage.setItem(
+                "tokens",
+                JSON.stringify({
+                    access: res.data.access,
+                    refresh: tokens.refresh,
+                })
+            );
             const email = localStorage.getItem("email");
             setCurrentUser(email);
-        }catch (err){
-            console.log(err)
+        } catch (err) {
+            console.log(err);
             handleLogout();
-        }finally {
+        } finally {
             setLoading(false);
         }
     }
+
     function handleLogout(navigate) {
         localStorage.removeItem("tokens");
         localStorage.removeItem("email");
         setCurrentUser(false);
         navigate("/login");
     }
+
     return (
-        <authContext.Provider value={{
-            currentUser,
-            error,
-            setError,
-            loading,
-            handleRegister,
-            handleLogin,
-            checkAuth,
-            handleLogout,
-        }}>{children}</authContext.Provider>
+        <authContext.Provider
+            value={{
+                currentUser,
+                error,
+                loading,
+                setError,
+                handleRegister,
+                handleLogin,
+                checkAuth,
+                handleLogout,
+            }}>
+            {children}
+        </authContext.Provider>
     );
 };
-export default AuthContextProvider
+export default AuthContextProvider;
+
+
+

@@ -1,26 +1,34 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {authContext} from "../../Contexts/AuthContext";
 import {useNavigate} from "react-router-dom";
+import {Alert, Box} from "@mui/material";
 
 const Register = () => {
-    const {handleRegister,error,loading} =useContext(authContext);
+    const {handleRegister, error, setError, loading} = useContext(authContext);
     console.log(loading)
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
 
     function handleSave() {
-        if  (!email.trim() || !password.trim() || !passwordConfirm.trim()){
+        if (!email.trim() || !password.trim() || !passwordConfirm.trim()) {
             alert("Type in!")
-        }else{
+        } else {
             let formData = new FormData();
-            formData.append("email",email);
-            formData.append("password",password);
-            formData.append("passwordConfirm",passwordConfirm);
-            handleRegister(formData,navigate);
+            formData.append("email", email);
+            formData.append("name", name);
+            formData.append("password", password);
+            formData.append("password_confirm", passwordConfirm);
+            handleRegister(formData, navigate);
         }
     }
+
+    useEffect(() => {
+        setError(false);
+    }, []);
+
     if (loading) {
         return <h1>Loading ...</h1>;
     }
@@ -29,9 +37,13 @@ const Register = () => {
         <div>
             <div>Register</div>
             {error ? (
-                <div>{error.map((item,index) => (
-                    alert(item)
-                ))}</div>
+                <Box>
+                    {error.map((item, index) => (
+                        <Alert severity="error" key={item + index}>
+                            {item}
+                        </Alert>
+                    ))}
+                </Box>
             ) : null}
 
             <input
@@ -39,17 +51,22 @@ const Register = () => {
                 onChange={e => setEmail(e.target.value)}
                 placeholder="email"
                 type="text"/>
-                <input
+            <input
+                value={name}
+                onChange={e => setName(e.target.value)}
+                placeholder="name"
+                type="text"/>
+            <input
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="password"
                 type="text"/>
-                <input
+            <input
                 value={passwordConfirm}
                 onChange={e => setPasswordConfirm(e.target.value)}
                 placeholder="confirm password"
                 type="text"/>
-                <button onClick={handleSave}>Register</button>
+            <button onClick={handleSave}>Register</button>
         </div>
     );
 };

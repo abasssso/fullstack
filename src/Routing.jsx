@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, {useContext} from "react";
+import {Navigate, Route, Routes} from "react-router-dom";
 import Account from "./components/Account/Account";
 import Cart from "./components/Cart/Cart";
 import Contact from "./components/Contact/Contact";
@@ -9,21 +9,31 @@ import Products from "./components/Products/Products";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import RegisterSuccess from "./components/RegisterSuccess/RegisterSuccess";
+import AddProduct from "./components/AddProduct/AddProduct";
+import {authContext} from "./Contexts/AuthContext";
 
 const Routing = () => {
-  return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/Register" element={<Register />} />
-      <Route path="/Register-success" element={<RegisterSuccess />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/insurance" element={<Insurance />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/account" element={<Account />} />
-      <Route path="/cart" element={<Cart />} />
-    </Routes>
-  );
+    const {loading, currentUser} = useContext(authContext);
+    if (loading) {
+        return <h1>Loading . . .</h1>;
+    }
+    console.log(currentUser);
+
+    return (
+        <Routes>
+            <Route path="/login" element={currentUser ? <Navigate to="products" replace/> : <Login/>}/>
+            <Route path="/add" element={currentUser ? <AddProduct/> : <Login/>}/>
+            <Route path="/register" element={currentUser ? <Navigate to="/products" replace/> : <Register/>}
+            />
+            <Route path="/register-success" element={currentUser ? (<Navigate to="/products" replace/>) : (<RegisterSuccess/>)}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/products" element={<Products/>}/>
+            <Route path="/insurance" element={<Insurance/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+            <Route path="/account" element={<Account/>}/>
+            <Route path="/cart" element={<Cart/>}/>
+        </Routes>
+    );
 };
 
 export default Routing;
