@@ -36,11 +36,11 @@
   justify-content: space-between;
   margin-top: 30px;
 }
-h3 {
+.contact-message-box_h3 h3 {
   color: white;
   font-size: 30px;
 }
-button {
+.send_btn {
   padding: 16px 32px;
   background: linear-gradient(180deg, #ffbf00 0%, #f2a50c 100%);
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);

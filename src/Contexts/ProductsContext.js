@@ -4,6 +4,7 @@ import axios from "axios";
 export const productsContext = React.createContext();
 
 const INIT_STATE = {
+
     products: [],
     pages: 0,
     categories: [],
@@ -43,6 +44,7 @@ function reducer(state = INIT_STATE, action) {
 }
 
 const API = "http://18.197.23.213";
+
 
 const ProductsContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
@@ -124,7 +126,9 @@ const ProductsContextProvider = ({children}) => {
         } catch (err) {
             console.log(err);
         }
+
     }
+
 
     async function createProduct(newProduct, navigate) {
         try {
@@ -143,23 +147,23 @@ const ProductsContextProvider = ({children}) => {
         } catch (err) {
             console.log(err);
         }
+
     }
 
-    async function deleteProduct(id) {
-        try {
-            const tokens = JSON.parse(localStorage.getItem("tokens"));
-            //config
-            const Authorization = `Bearer ${tokens.access}`;
-            const config = {
-                headers: {
-                    Authorization,
-                },
-            };
-            await axios.delete(`${API}/products/${id}/`, config);
-            getProducts();
-        } catch (err) {
-            console.log(err);
-        }
+  async function deleteProduct(id) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      await axios.delete(`${API}/products/${id}/`, config);
+      getProducts();
+    } catch (err) {
+      console.log(err);
     }
     async function deleteImage(id) {
         try {
