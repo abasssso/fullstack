@@ -29,7 +29,7 @@ const Header = () => {
                         style={{display: "none"}}
                     />
                     <div className="navbar-container_logo">
-                        <h1 onClick={() => navigate("/home")}>Cycle</h1>
+                        <h1 onClick={() => navigate("/")}>Cycle</h1>
                     </div>
                     <div className="navbar-right">
                         <p onClick={() => navigate("/products")}>Bicycles</p>

@@ -1,51 +1,72 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {productsContext} from "../../Contexts/ProductsContext";
 
+const EditProduct = ({pov}) => {
 
-const AddProduct = () => {
-    const navigate = useNavigate();
-    const {getCategories, categories, createProduct,getSize,sizes,brands,getBrand} =
-        useContext(productsContext);
+    const {id} = useParams()
+
+    const navigate = useNavigate()
+
+    const {
+        getCategories,
+        categories,
+        getOneProduct,
+        oneProduct,
+        updateProduct,
+        getSize,
+        getBrand,
+        getProducts,
+        sizes,
+        brands,
+    } = useContext(productsContext);
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
-    const [images, setImages] = useState("");
     const [size, setSize] = useState("");
     const [brand, setBrand] = useState("");
-
+    const [images, setImages] = useState("");
 
     useEffect(() => {
         getCategories();
+        getOneProduct(id);
+        getSize();
+        getBrand();
+        getProducts();
     }, []);
 
-    useEffect(()=>{
-        getSize()
-    },[])
-
-    useEffect(()=>{
-        getBrand()
-    },[])
-
-    // console.log(categories)
+    useEffect(() => {
+        if (oneProduct) {
+            setTitle(oneProduct.title);
+            setDescription(oneProduct.description);
+            setPrice(oneProduct.price);
+            setSize(oneProduct.size.id);
+            setImages(oneProduct.images.image);
+            setBrand(oneProduct.brand.id);
+            setCategory(oneProduct.category.id);
+        }
+    }, [oneProduct]);
 
     function handleSave() {
-        let newProduct = new FormData();
-        newProduct.append("title", title);
-        newProduct.append("description", description);
-        newProduct.append("price", price);
-        newProduct.append("category", category);
-        newProduct.append("images", images);
-        newProduct.append("size", size);
-        newProduct.append("brand", brand);
-        createProduct(newProduct, navigate);
+        let editedProduct = new FormData();
+        editedProduct.append("title", title);
+        editedProduct.append("description", description);
+        editedProduct.append("price", price);
+        editedProduct.append("category", category);
+        editedProduct.append("size", size);
+        editedProduct.append("brand", brand);
+        if (images) {
+            editedProduct.append("image", images);
+        }
+        updateProduct(id, editedProduct, navigate);
     }
 
     return (
         <div>
             <div>
-                Add Product
+                EDIT PRODUCT
             </div>
             <div>
                 <input
@@ -80,11 +101,13 @@ const AddProduct = () => {
                 </select>
                 <input
                     accept="image/*"
-                    key={images.id}
                     multiple
                     type="file"
                     onChange={e => setImages(e.target.files[0])}
                 />
+                <div>
+                    {console.log(images)}
+                </div>
                 <button onClick={handleSave}>
                     Save
                 </button>
@@ -93,4 +116,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default EditProduct;

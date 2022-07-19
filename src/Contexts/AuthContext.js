@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const authContext = React.createContext();
 
-const API = "https://thawing-brook-92190.herokuapp.com"
+const API = "http://18.197.23.213"
 
 const AuthContextProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(false);

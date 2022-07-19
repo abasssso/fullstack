@@ -11,14 +11,14 @@ import Register from "./components/Register/Register";
 import RegisterSuccess from "./components/RegisterSuccess/RegisterSuccess";
 import AddProduct from "./components/AddProduct/AddProduct";
 import {authContext} from "./Contexts/AuthContext";
+import EditProduct from "./components/EditProduct/EditProduct";
 
 const Routing = () => {
     const {loading, currentUser} = useContext(authContext);
     if (loading) {
         return <h1>Loading . . .</h1>;
     }
-    console.log(currentUser);
-
+    // console.log(currentUser);
     return (
         <Routes>
             <Route path="/login" element={currentUser ? <Navigate to="products" replace/> : <Login/>}/>
@@ -32,6 +32,7 @@ const Routing = () => {
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/account" element={<Account/>}/>
             <Route path="/cart" element={<Cart/>}/>
+            <Route path="/edit/:id" element={<EditProduct/>}/>
         </Routes>
     );
 };
