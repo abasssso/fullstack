@@ -13,7 +13,7 @@ const Contact = () => {
       </div>
       <div className="contact-message-box">
         <div className="contact-message-box_phone">
-          <h3>Online store</h3>
+          <h3 className="contact-message-box_h3">Online store</h3>
           <div className="message-box-phone_item">
             <svg
               width="14"
@@ -195,7 +195,7 @@ const Contact = () => {
             <p>Message</p>
             <input type="text" name="" id="" placeholder="What do you need" />
           </div>
-          <button>SEND MESSAGE</button>
+          <button className="send_btn">SEND MESSAGE</button>
         </div>
       </div>
     </div>
