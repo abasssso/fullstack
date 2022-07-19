@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {authContext} from "../../Contexts/AuthContext";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Alert, Box} from "@mui/material";
 
 const Register = () => {
@@ -67,7 +67,11 @@ const Register = () => {
                 placeholder="confirm password"
                 type="text"/>
             <button onClick={handleSave}>Register</button>
+            <div>
+                You already have account? Try to <Link to="/login">Login</Link>
+            </div>
         </div>
+
     );
 };
 

@@ -23,7 +23,6 @@ const Products = () => {
         });
     }, [currentPage]);
 
-
     return (
         <div>
             <button onClick={() => navigate("/add")}>
