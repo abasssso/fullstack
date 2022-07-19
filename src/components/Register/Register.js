@@ -1,9 +1,13 @@
+
 import React, { useContext, useEffect, useState } from "react";
 import { authContext } from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Alert, Box } from "@mui/material";
 import Back from "./back.jpeg";
 import "./Register.css";
+
+
+
 
 const Register = () => {
   const { handleRegister, error, setError, loading } = useContext(authContext);
@@ -83,6 +87,7 @@ const Register = () => {
           type="text"
         />
 
+
         <button className="register-btn" onClick={handleSave}>
           Create Account
         </button>
@@ -93,6 +98,7 @@ const Register = () => {
       </div>
     </div>
   );
+
 };
 
 export default Register;
