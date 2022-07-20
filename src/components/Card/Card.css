@@ -1,0 +1,30 @@
+.container-card {
+  display: flex;
+  justify-content: center;
+}
+.container-card_inner {
+  display: flex;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: black;
+  color: white;
+  opacity: 70%;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
+}
+.container-card-inner_product {
+  display: flex;
+  flex-direction: column;
+}
+.card-inner-product_info {
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+}
+.product-info_icon {
+  margin: 10px;
+}
