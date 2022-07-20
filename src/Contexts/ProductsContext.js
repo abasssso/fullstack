@@ -219,41 +219,43 @@ const ProductsContextProvider = ({children}) => {
     } catch (err) {
       console.log(err);
     }
-  }
-  async function toggleLike(id) {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(`${API}/products/${id}/toggle_like/`, config);
-      getProducts();
-    } catch (err) {
-      console.log(err);
+    async function toggleLike(id) {
+        try {
+            const tokens = JSON.parse(localStorage.getItem("tokens"));
+            //config
+            const Authorization = `Bearer ${tokens.access}`;
+            const config = {
+                headers: {
+                    Authorization,
+                },
+            };
+            const res = await axios(`${API}/products/${id}/like/`, config);
+            getProducts();
+        } catch (err) {
+            console.log(err);
+        }
     }
-  }
-  async function toggleFavorites(id) {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(
-        `${API}/products/${id}/toggle_favorites/`,
-        config
-      );
-      getProducts();
-      getFavorites();
-    } catch (err) {
-      console.log(err);
+
+    async function toggleFavorites(id) {
+        try {
+            const tokens = JSON.parse(localStorage.getItem("tokens"));
+            //config
+            const Authorization = `Bearer ${tokens.access}`;
+            const config = {
+                headers: {
+                    Authorization,
+                },
+            };
+            const res = await axios(
+                `${API}/products/${id}/favorite/`,
+                config
+            );
+            getProducts();
+            getFavorites();
+        } catch (err) {
+            console.log(err);
+        }
+
     }
   }
   async function getFavorites() {

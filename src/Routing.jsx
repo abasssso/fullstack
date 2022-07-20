@@ -12,6 +12,8 @@ import RegisterSuccess from "./components/RegisterSuccess/RegisterSuccess";
 import AddProduct from "./components/AddProduct/AddProduct";
 import {authContext} from "./Contexts/AuthContext";
 import EditProduct from "./components/EditProduct/EditProduct";
+import RestorePass from "./components/RestorePass/RestorePass";
+import RestoreComplete from "./components/RestoreComplete/RestoreComplete";
 
 const Routing = () => {
     const {loading, currentUser} = useContext(authContext);
@@ -22,6 +24,8 @@ const Routing = () => {
     return (
         <Routes>
             <Route path="/login" element={currentUser ? <Navigate to="products" replace/> : <Login/>}/>
+            <Route path="/restore-pass" element={ <RestorePass/>} />
+            <Route path="/restore-complete" element={ <RestoreComplete/>} />
             <Route path="/add" element={currentUser ? <AddProduct/> : <Login/>}/>
             <Route path="/register" element={currentUser ? <Navigate to="/products" replace/> : <Register/>}
             />
