@@ -45,7 +45,9 @@ const Card = ({ item }) => {
           <IconButton onClick={() => navigate(`/edit/${item.id}`)}>
             <EditIcon />
           </IconButton>
-          <IconButton></IconButton>
+          <IconButton>
+
+          </IconButton>
         </div>
         <div>Description:{item.description}</div>
       </div>

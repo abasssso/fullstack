@@ -21,7 +21,7 @@ function reducer(state = INIT_STATE, action) {
             return {
                 ...state,
                 products: action.payload.results,
-                pages: Math.ceil(action.payload.count / 5),
+                pages: Math.ceil(action.payload.count / 3),
             };
         case "GET_FAVORITES":
             return {
@@ -57,7 +57,7 @@ const ProductsContextProvider = ({children}) => {
                     Authorization,
                 },
             };
-            const res = await axios(`${API}/products/`, config);
+            const res = await axios(`${API}/products/${window.location.search}`, config);
             dispatch({
                 type: "GET_PRODUCTS",
                 payload: res.data,
