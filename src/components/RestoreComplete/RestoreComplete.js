@@ -1,7 +1,9 @@
 import React, {useContext, useState} from 'react';
 import {authContext} from "../../Contexts/AuthContext";
+import {useNavigate} from "react-router-dom";
 
 const RestoreComplete = () => {
+    const navigate = useNavigate()
 
     const [email,setEmail] = useState("")
     const [activate,setActivate] = useState("")
@@ -16,7 +18,7 @@ const RestoreComplete = () => {
         } else {
             let formData = new FormData();
             formData.append("email", email);
-            formData.append("name", name);
+            formData.append("activation_code", activate);
             formData.append("password", password);
             formData.append("password_confirm", passwordConfirm);
             restoreComplete(formData, navigate);
@@ -25,6 +27,7 @@ const RestoreComplete = () => {
 
     return (
         <div>
+            Now! Check your Email for activation code.
             <div>
                 <input
                     placeholder="email"
@@ -46,6 +49,7 @@ const RestoreComplete = () => {
                     value={passwordConfirm}
                     onChange={e => setPasswordConfirm(e.target.value)}
                     type="text"/>
+                    <button onClick={handleSave}>Save</button>
             </div>
         </div>
     );
