@@ -2,6 +2,7 @@
   /* margin: 10px 200px; */
   /* display: flex; */
   /* justify-content: flex-end; */
+  /* align-items: center; */
 }
 .navbar-container {
   background-color: black;
@@ -13,16 +14,140 @@
 }
 .navbar-right {
   display: flex;
-  width: 500px;
+  width: 900px;
   justify-content: space-evenly;
+  align-items: center;
+}
+.navbar-right_user {
+  display: flex;
+  align-items: center;
 }
 .navbar-right-account {
   position: fixed;
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+.navbar-right p {
+  cursor: pointer;
+}
+.logout-btn {
+  height: 100px;
+}
+.menu__item:hover {
+  background-color: #cfd8dc;
 }
 .logo {
 }
-p {
+/* p {
   cursor: pointer;
+} */
+
+@media all and (max-width: 768px) {
+  .hamburger-menu {
+    display: block !important;
+    z-index: 1;
+    color: black;
+  }
+  .navbar-right {
+    display: none;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    text-align: center;
+    background-color: #eceff1;
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+  }
+  /* скрываем чекбокс */
+  #menu__toggle {
+    opacity: 0;
+  }
+  /* стилизуем кнопку */
+  .menu__btn {
+    display: flex; /* используем flex для центрирования содержимого */
+    align-items: center; /* центрируем содержимое кнопки */
+    position: fixed;
+    top: 45px;
+    left: 45px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  /* добавляем "гамбургер" */
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #616161;
+  }
+  .menu__btn > span::before {
+    content: "";
+    top: -8px;
+  }
+  .menu__btn > span::after {
+    content: "";
+    top: 8px;
+  }
+  /* контейнер меню */
+  .menu__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    text-align: center;
+    background-color: #eceff1;
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+  }
+  /* элементы меню */
+  .menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: #333;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .menu__item:hover {
+    background-color: #cfd8dc;
+  }
+}
+@media all and (max-width: 768px) {
+  .navbar-container_burger {
+    display: block !important;
+  }
+  .navbar-right {
+    display: none;
+  }
+  #menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+  }
 }
