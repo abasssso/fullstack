@@ -1,4 +1,3 @@
-import { Container, TextField } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
@@ -23,7 +22,7 @@ const Login = () => {
 
   return (
     <div className="login">
-      <Container className="login-container">
+      <div className="login-container">
         <h1>Cycle</h1>
         <h2>Login</h2>
         <div>{error ? alert(error) : null}</div>
@@ -54,7 +53,7 @@ const Login = () => {
           <button onClick={handleSave}>Sign In</button>
           <p>Forgot password?</p>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
