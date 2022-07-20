@@ -25,13 +25,13 @@ const Header = () => {
       {currentUser ? (
         <div className="container">
           <div className="navbar-container">
-            <div class="hamburger-menu" style={{ display: "none" }}>
+            <div className="hamburger-menu" style={{ display: "none" }}>
               <input id="menu__toggle" type="checkbox" />
-              <label class="menu__btn" for="menu__toggle">
+              <label className="menu__btn" for="menu__toggle">
                 <span></span>
               </label>
 
-              <ul class="menu__box">
+              <ul className="menu__box">
                 <h1 style={{ marginBottom: "20px" }}>Cycle</h1>
                 <li>
                   <p
