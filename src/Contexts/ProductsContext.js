@@ -229,7 +229,7 @@ const ProductsContextProvider = ({children}) => {
                     Authorization,
                 },
             };
-            const res = await axios(`${API}/products/${id}/toggle_like/`, config);
+            const res = await axios(`${API}/products/${id}/like/`, config);
             getProducts();
         } catch (err) {
             console.log(err);
@@ -247,7 +247,7 @@ const ProductsContextProvider = ({children}) => {
                 },
             };
             const res = await axios(
-                `${API}/products/${id}/toggle_favorites/`,
+                `${API}/products/${id}/favorite/`,
                 config
             );
             getProducts();

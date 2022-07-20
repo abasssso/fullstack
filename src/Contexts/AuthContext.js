@@ -23,6 +23,29 @@ const AuthContextProvider = ({children}) => {
         }
     }
 
+    async function restorePass(formData,navigate,email){
+        try{
+            const res = await axios.post(`${API}/account/restore_password/`, formData);
+            localStorage.setItem("email", email);
+            console.log(res)
+        }catch (err) {
+            console.log(err)
+            setError([err.response.data.detail])
+        }
+    }
+
+    async function restoreComplete(formData,navigate,email){
+        try{
+            const res = await axios.post(`${API}/account/restore_complete/`, formData);
+            localStorage.setItem("email", email);
+            console.log(res)
+            navigate("/login")
+        }catch (err) {
+            console.log(err)
+            setError([err.response.data.detail])
+        }
+    }
+
     async function handleLogin(formData, email, navigate) {
         try {
             const res = await axios.post(`${API}/account/login/`, formData);
@@ -30,7 +53,7 @@ const AuthContextProvider = ({children}) => {
             localStorage.setItem("email", email);
             setCurrentUser(email);
             navigate("/");
-            // console.log(res);
+            console.log(res);
         } catch (err) {
             console.log(err);
             setError([err.response.data.detail]);
@@ -90,6 +113,8 @@ const AuthContextProvider = ({children}) => {
                 handleLogin,
                 checkAuth,
                 handleLogout,
+                restorePass,
+                restoreComplete,
             }}>
             {children}
         </authContext.Provider>

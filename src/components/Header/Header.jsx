@@ -17,9 +17,7 @@ const Header = () => {
       checkAuth();
     }
   }, []);
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+
   return (
       <div>
         {currentUser ? (<div className="container">
@@ -54,7 +52,7 @@ const Header = () => {
               <h1 onClick={() => navigate("/")}>Cycle</h1>
             </div>
             <div className="navbar-right">
-              <p onClick={() => navigate("/login/products")}>Bicycles</p>
+              <p onClick={() => navigate("/products")}>Bicycles</p>
               <p onClick={() => navigate("/insurance")}>Insurance</p>
               <p onClick={() => navigate("/contact")}>Contact</p>
               <PersonIcon onClick={() => navigate("/register")}/>
