@@ -43,6 +43,7 @@ const Card = ({ item }) => {
           style={{
             display: "flex",
           }}>
+
           <p>
             A Nimbus Stark é a melhor Bikcraft já criada pela nossa equipe. Ela
             vem equipada com os melhores acessórios, o que garante maior
@@ -70,6 +71,7 @@ const Card = ({ item }) => {
               <EditIcon />
             </IconButton>
           </div>
+
         </div>
       </div>
     </div>

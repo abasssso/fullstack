@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
 import "./Login.css";
 
@@ -51,7 +51,7 @@ const Login = () => {
         </div>
         <div>
           <button onClick={handleSave}>Sign In</button>
-          <p>Forgot password?</p>
+          <p><Link to="/restore-pass">Forgot password?</Link></p>
         </div>
       </div>
     </div>
