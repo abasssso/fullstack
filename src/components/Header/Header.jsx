@@ -1,16 +1,18 @@
 import "./Header.css";
 import "./media.css";
-import React, { useContext, useEffect } from "react";
+import React, {useContext, useEffect} from "react";
 import PersonIcon from "@mui/icons-material/Person";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
+
 import { authContext } from "../../Contexts/AuthContext";
 import { Button } from "@mui/material";
 const Header = () => {
   const navigate = useNavigate();
   const { currentUser, checkAuth, loading, handleLogout } =
     useContext(authContext);
+
   useEffect(() => {
     if (localStorage.getItem("tokens")) {
       checkAuth();
@@ -20,6 +22,7 @@ const Header = () => {
     return <h2>Loading...</h2>;
   }
   return (
+
     <div>
       {currentUser ? (
         <div className="container">
@@ -53,10 +56,12 @@ const Header = () => {
                 </li>
               </ul>
             </div>
+
             <div className="navbar-container_logo">
               <h1 onClick={() => navigate("/")}>Cycle</h1>
             </div>
             <div className="navbar-right">
+
               <p className="menu_item" onClick={() => navigate("/products")}>
                 Bicycles
               </p>
@@ -84,10 +89,11 @@ const Header = () => {
         </div>
       ) : (
         <div className="container">
+
           <div className="navbar-container">
             <MenuIcon
-              className="navbar-container_burger"
-              style={{ display: "none" }}
+                className="navbar-container_burger"
+                style={{display: "none"}}
             />
             <div className="navbar-container_logo">
               <h1 onClick={() => navigate("/")}>Cycle</h1>
@@ -96,13 +102,13 @@ const Header = () => {
               <p onClick={() => navigate("/login/products")}>Bicycles</p>
               <p onClick={() => navigate("/insurance")}>Insurance</p>
               <p onClick={() => navigate("/contact")}>Contact</p>
-              <PersonIcon onClick={() => navigate("/register")} />
-              <ShoppingCartIcon onClick={() => navigate("/cart")} />
+              <PersonIcon onClick={() => navigate("/register")}/>
+              <ShoppingCartIcon onClick={() => navigate("/cart")}/>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        </div>)}
+      </div>
+
   );
 };
 export default Header;

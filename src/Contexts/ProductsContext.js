@@ -2,14 +2,16 @@ import React, { useReducer } from "react";
 import axios from "axios";
 export const productsContext = React.createContext();
 const INIT_STATE = {
-  products: [],
-  pages: 0,
-  categories: [],
-  sizes: [],
-  brands: [],
-  oneProduct: null,
-  favorites: [],
-  favoritesPages: 0,
+
+    products: [],
+    pages: 0,
+    categories: [],
+    sizes: [],
+    brands:[],
+    oneProduct: null,
+    favorites: [],
+    favoritesPages: 0,
+
 };
 function reducer(state = INIT_STATE, action) {
   // console.log(action);
@@ -39,25 +41,30 @@ function reducer(state = INIT_STATE, action) {
   }
 }
 const API = "http://18.197.23.213";
-const ProductsContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, INIT_STATE);
-  async function getProducts() {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(`${API}/products/`, config);
-      dispatch({
-        type: "GET_PRODUCTS",
-        payload: res.data,
-      });
-    } catch (err) {
-      console.log(err);
+
+
+const ProductsContextProvider = ({children}) => {
+    const [state, dispatch] = useReducer(reducer, INIT_STATE);
+
+    async function getProducts() {
+        try {
+            const tokens = JSON.parse(localStorage.getItem("tokens"));
+            //config
+            const Authorization = `Bearer ${tokens.access}`;
+            const config = {
+                headers: {
+                    Authorization,
+                },
+            };
+            const res = await axios(`${API}/products/`, config);
+            dispatch({
+                type: "GET_PRODUCTS",
+                payload: res.data,
+            });
+        } catch (err) {
+            console.log(err);
+        }
+
     }
   }
   async function getCategories() {
@@ -97,58 +104,62 @@ const ProductsContextProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
-  }
-  async function getBrand() {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(`${API}/brand/`, config);
-      dispatch({
-        type: "GET_BRANDS",
-        payload: res.data.results,
-      });
-      // console.log(res.data.results)
-    } catch (err) {
-      console.log(err);
+
+    async function getBrand() {
+        try {
+            const tokens = JSON.parse(localStorage.getItem("tokens"));
+            const Authorization = `Bearer ${tokens.access}`;
+            const config = {
+                headers: {
+                    Authorization,
+                },
+            };
+            const res = await axios(`${API}/brand/`, config);
+            dispatch({
+                type: "GET_BRANDS",
+                payload: res.data.results,
+            });
+            // console.log(res.data.results)
+        } catch (err) {
+            console.log(err);
+        }
     }
-  }
-  async function createProduct(newProduct, navigate) {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios.post(`${API}/products/`, newProduct, config);
-      // console.log(res);
-      navigate("/products");
-      getProducts();
-    } catch (err) {
-      console.log(err);
+
+    async function createProduct(newProduct, navigate) {
+        try {
+            const tokens = JSON.parse(localStorage.getItem("tokens"));
+            //config
+            const Authorization = `Bearer ${tokens.access}`;
+            const config = {
+                headers: {
+                    Authorization,
+                },
+            };
+            const res = await axios.post(`${API}/products/`, newProduct, config);
+            // console.log(res);
+            navigate("/products");
+            getProducts();
+        } catch (err) {
+            console.log(err);
+        }
     }
-  }
-  async function deleteProduct(id) {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      await axios.delete(`${API}/products/${id}/`, config);
-      getProducts();
-    } catch (err) {
-      console.log(err);
+
+    async function deleteProduct(id) {
+        try {
+            const tokens = JSON.parse(localStorage.getItem("tokens"));
+            //config
+            const Authorization = `Bearer ${tokens.access}`;
+            const config = {
+                headers: {
+                    Authorization,
+                },
+            };
+            await axios.delete(`${API}/products/${id}/`, config);
+            getProducts();
+        } catch (err) {
+            console.log(err);
+        }
+
     }
   }
   async function deleteImage(id) {
