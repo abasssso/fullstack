@@ -1,10 +1,11 @@
 import React, { useReducer } from "react";
-export const cartContext = React.createContext();
+export const CartContext = React.createContext();
 const INIT_STATE = {
   cart: null,
   count: 0,
 };
 function reducer(state = INIT_STATE, action) {
+  console.log(action);
   switch (action.type) {
     case "GET_CART":
       return {
@@ -54,7 +55,7 @@ const CartContextProvider = ({ children }) => {
       };
     }
     cart.totalPrice = cart.products.reduce((prev, curr) => {
-      console.log(prev);
+      // console.log(prev);
       return prev + curr.subPrice;
     }, 0);
 
@@ -62,6 +63,7 @@ const CartContextProvider = ({ children }) => {
       type: "GET_CART",
       payload: cart,
     });
+    console.log(cart);
   }
   function deleteFromCart(id) {
     let cart = JSON.parse(localStorage.getItem("cart"));
@@ -102,7 +104,7 @@ const CartContextProvider = ({ children }) => {
     getCart();
   }
   return (
-    <cartContext.Provider
+    <CartContext.Provider
       value={{
         cart: state.cart,
         count: state.count,
@@ -113,7 +115,7 @@ const CartContextProvider = ({ children }) => {
         checkProductInCart,
       }}>
       {children}
-    </cartContext.Provider>
+    </CartContext.Provider>
   );
 };
 export default CartContextProvider;

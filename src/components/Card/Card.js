@@ -20,9 +20,9 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./Card.css";
 import { Add } from "@mui/icons-material";
 import { authContext } from "../../Contexts/AuthContext";
-import { cartContext } from "../../Contexts/CartContext";
+import { CartContext } from "../../Contexts/CartContext";
 const Card = ({ item }) => {
-  const { addToCart, checkProductInCart } = React.useContext(cartContext);
+  const { addToCart, checkProductInCart } = React.useContext(CartContext);
   const [productState, setProductState] = React.useState(
     checkProductInCart(item.id)
   );
@@ -86,14 +86,26 @@ const Card = ({ item }) => {
             <PedalBikeIcon className="product-info_icon" /> {item.brand}
           </div>
           <div>
-            <IconButton>
-              <FavoriteBorderIcon className="product-info_icon" />
+            <IconButton onClick={() => toggleLike(item.id)}>
+              <FavoriteBorderIcon
+                color={item.is_liked ? "error" : "black"}
+                className="product-info_icon"
+              />
+              {item.like}
             </IconButton>
-            {item.likes}
-            <IconButton>
+            {/* <IconButton>
               <BookmarkBorderIcon className="product-info_icon" />
+            </IconButton> */}
+            <IconButton onClick={() => toggleFavorites(item.id)}>
+              {item.is_favorite ? (
+                <BookmarkIcon className="product-info_icon" />
+              ) : (
+                <BookmarkBorderIcon
+                  onClick={() => navigate("/favorites")}
+                  className="product-info_icon"
+                />
+              )}
             </IconButton>
-
             <IconButton
               className="product-info_icon"
               onClick={() => {
@@ -101,25 +113,11 @@ const Card = ({ item }) => {
                 setProductState(checkProductInCart(item.id));
               }}>
               {productState ? (
-                // <Tooltip title="Delete Watch">
-                <IconButton>
-                  <ClearIcon className="product-info_icon" />
-                </IconButton>
+                <ClearIcon className="product-info_icon" />
               ) : (
-                // </Tooltip>
-                // <Tooltip title="Add Watch">
                 <AddIcon className="product-info_icon" />
-                // </Tooltip>
               )}
-              {/* <AddIcon color={productState ? "secondary" : "primary"} /> */}
             </IconButton>
-            {/* <IconButton onClick={() => toggleFavorites(item.id)}>
-              {item.favorite_by_user ? (
-                <BookmarkIcon className="product-info_icon" />
-              ) : (
-                <BookmarkBorderIcon className="product-info_icon" />
-              )}
-            </IconButton> */}
           </div>
           {item.is_author ? (
             <div>

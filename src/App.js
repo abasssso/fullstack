@@ -6,20 +6,23 @@ import Routing from "./Routing";
 import ProductsContextProvider from "./Contexts/ProductsContext";
 import AuthContextProvider from "./Contexts/AuthContext";
 import CartContextProvider from "./Contexts/CartContext";
+import FavouriteContextProvider from "./Contexts/favoriteContext";
 
 function App() {
   return (
-    <CartContextProvider>
-      <AuthContextProvider>
-        <ProductsContextProvider>
-          <BrowserRouter>
-            <Header />
-            <Routing />
-            <Footer />
-          </BrowserRouter>
-        </ProductsContextProvider>
-      </AuthContextProvider>
-    </CartContextProvider>
+    <FavouriteContextProvider>
+      <CartContextProvider>
+        <AuthContextProvider>
+          <ProductsContextProvider>
+            <BrowserRouter>
+              <Header />
+              <Routing />
+              <Footer />
+            </BrowserRouter>
+          </ProductsContextProvider>
+        </AuthContextProvider>
+      </CartContextProvider>
+    </FavouriteContextProvider>
   );
 }
 

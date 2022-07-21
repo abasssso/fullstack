@@ -15,6 +15,7 @@ import EditProduct from "./components/EditProduct/EditProduct";
 import RestorePass from "./components/RestorePass/RestorePass";
 import RestoreComplete from "./components/RestoreComplete/RestoreComplete";
 import Details from "./components/Details/Details";
+import Favorites from "./components/Favorites/Favorites";
 
 const Routing = () => {
   const { loading, currentUser } = useContext(authContext);
@@ -55,6 +56,7 @@ const Routing = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/details/:id" element={<Details />} />
+      <Route path="/favorites" element={<Favorites />} />
     </Routes>
   );
 };
