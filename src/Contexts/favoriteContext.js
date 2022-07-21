@@ -1,14 +1,14 @@
 import React, { createContext, useReducer } from "react";
 export const FavouriteContext = createContext();
 const INIT_STATE = {
-  fav: null,
+  favorites: null,
 };
 function reducer(state = INIT_STATE, action) {
   switch (action.type) {
-    case "GET_FAV":
+    case "GET_FAVORITES":
       return {
         ...state,
-        fav: action.payload,
+        favorites: action.payload,
       };
     default:
       return state;
@@ -17,10 +17,10 @@ function reducer(state = INIT_STATE, action) {
 
 const FavouriteContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
-  function addToFav(product) {
-    let fav = JSON.parse(localStorage.getItem("fav"));
-    if (!fav) {
-      fav = {
+  function addToFavorites(product) {
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (!favorites) {
+      favorites = {
         products: [],
       };
     }
@@ -28,60 +28,62 @@ const FavouriteContextProvider = ({ children }) => {
       item: product,
       subPrice: product.price,
     };
-    const isProductInFav = fav.products.some(
+    const isProductInFavorites = favorites.products.some(
       item => item.item.id === newProduct.item.id
     );
-    if (isProductInFav) {
-      fav.products = fav.products.filter(
+    if (isProductInFavorites) {
+      favorites.products = favorites.products.filter(
         item => item.item.id !== newProduct.item.id
       );
     } else {
-      fav.products.push(newProduct);
+      favorites.products.push(newProduct);
     }
-    localStorage.setItem("fav", JSON.stringify(fav));
-    getFav();
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    getFavorites();
   }
-  function getFav() {
-    let fav = JSON.parse(localStorage.getItem("fav"));
-    if (!fav) {
-      fav = {
+  function getFavorites() {
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (!favorites) {
+      favorites = {
         products: [],
       };
     }
     dispatch({
-      type: "GET_FAV",
-      payload: fav,
+      type: "GET_FAVORITES",
+      payload: favorites,
     });
   }
-  function deleteFromFav(id) {
-    let fav = JSON.parse(localStorage.getItem("fav"));
-    if (!fav) {
-      fav = {
+  function deleteFromFavorites(id) {
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (!favorites) {
+      favorites = {
         products: [],
       };
     }
-    fav.products = fav.products.filter(item => item.item.id !== id);
-    localStorage.setItem("fav", JSON.stringify(fav));
-    getFav();
+    favorites.products = favorites.products.filter(item => item.item.id !== id);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    getFavorites();
   }
-  function checkProductInFav(id) {
-    let fav = JSON.parse(localStorage.getItem("fav"));
-    if (!fav) {
-      fav = {
+  function checkProductInFavorites(id) {
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (!favorites) {
+      favorites = {
         products: [],
       };
     }
-    const isProductInFav = fav.products.some(item => item.item.id === id);
-    return isProductInFav;
+    const isProductInFavorites = favorites.products.some(
+      item => item.item.id === id
+    );
+    return isProductInFavorites;
   }
   return (
     <FavouriteContext.Provider
       value={{
-        fav: state.fav,
-        getFav,
-        addToFav,
-        deleteFromFav,
-        checkProductInFav,
+        favorites: state.fav,
+        getFavorites,
+        addToFavorites,
+        deleteFromFavorites,
+        checkProductInFavorites,
       }}>
       {children}
     </FavouriteContext.Provider>

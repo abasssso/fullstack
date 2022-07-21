@@ -5,7 +5,7 @@ import { productsContext } from "../../Contexts/ProductsContext";
 import Card from "../Card/Card";
 
 const Favorites = () => {
-  const { toggleFavourites } = useContext(productsContext);
+  const { toggleFavorites } = useContext(productsContext);
   const { getFavorites, favorites, favoritesPages } =
     useContext(productsContext);
   // useEffect(() => {
@@ -25,15 +25,15 @@ const Favorites = () => {
     });
   }, [currentPage]);
   return (
-    <Container>
-      <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
-        {favorites.map(item => (
+    <div>
+      <div display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
+        {favorites.products.map(item => (
           // <div  />
           <div key={item.id}>{item.item.title}</div>
         ))}
-      </Box>
-      <Box display={"flex"} justifyContent={"center"}>
-        ff
+      </div>
+
+      <div display={"flex"} justifyContent={"center"}>
         <Pagination
           count={favoritesPages}
           page={currentPage}
@@ -41,8 +41,8 @@ const Favorites = () => {
           variant="outlined"
           color="primary"
         />
-      </Box>
-    </Container>
+      </div>
+    </div>
   );
 };
 
