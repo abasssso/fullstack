@@ -28,10 +28,12 @@ const Favorites = () => {
     <Container>
       <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
         {favorites.map(item => (
-          <Card key={item.id} item={item} />
+          // <div  />
+          <div key={item.id}>{item.item.title}</div>
         ))}
       </Box>
       <Box display={"flex"} justifyContent={"center"}>
+        ff
         <Pagination
           count={favoritesPages}
           page={currentPage}
