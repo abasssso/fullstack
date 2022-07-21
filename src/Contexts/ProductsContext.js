@@ -32,6 +32,7 @@ function reducer(state = INIT_STATE, action) {
       };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
+
     case "GET_IMAGES":
       return { ...state, images: action.payload };
     case "GET_SIZES":
@@ -113,7 +114,6 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-
   async function getImage() {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -195,7 +195,6 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-
   async function deleteProduct(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -212,7 +211,6 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-
   async function deleteImage(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
