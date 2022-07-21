@@ -3,7 +3,7 @@ import { productsContext } from "../../Contexts/ProductsContext";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Card from "../Card/Card";
 import { Pagination, Slider } from "@mui/material";
-
+import "./Products.css";
 const Products = () => {
   const navigate = useNavigate();
   const { getProducts, products, pages } = useContext(productsContext);
@@ -37,30 +37,35 @@ const Products = () => {
 
   return (
     <div>
-      <button onClick={() => navigate("/add")}>Add product</button>
-      <div>
-        <input
-          value={search}
-          onClick={e => setSearch(e.target.value)}
-          placeholder="search..."
-          type="text"
-        />
-      </div>
-      <div>
-        <Slider
-          style={{
-            width: "500px",
-          }}
-          transition={"1s"}
-          value={price}
-          onChange={e => {
-            setPrice(e.target.value);
-          }}
-          valueLabelDisplay="auto"
-          min={0}
-          max={10000}
-          step={100}
-        />
+      <div className="container-add">
+        <button className="add-btn" onClick={() => navigate("/add")}>
+          Add product
+        </button>
+        <div>
+          <input
+            className="search-inp"
+            value={search}
+            onClick={e => setSearch(e.target.value)}
+            placeholder="Search "
+            type="text"
+          />
+        </div>
+        <div>
+          <Slider
+            style={{
+              width: "500px",
+            }}
+            transition={"1s"}
+            value={price}
+            onChange={e => {
+              setPrice(e.target.value);
+            }}
+            valueLabelDisplay="auto"
+            min={0}
+            max={10000}
+            step={100}
+          />
+        </div>
       </div>
       <div>
         {products.map(item => (

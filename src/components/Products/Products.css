@@ -3,3 +3,24 @@
   color: white;
   padding: 40px 170px;
 }
+.add-btn {
+  padding: 10px 50px;
+  border: none;
+  border-radius: 10px;
+  margin: 10px;
+  /* display: flex; */
+  /* justify-content: center; */
+}
+.search-inp {
+  padding: 20px 30px;
+  border: none;
+  background-color: rgb(227, 227, 227);
+  border-radius: 10px;
+}
+.container-add {
+  display: flex;
+  /* text-align: center; */
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}

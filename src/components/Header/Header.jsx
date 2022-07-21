@@ -61,9 +61,7 @@ const Header = () => {
               <p className="menu_item" onClick={() => navigate("/products")}>
                 Bicycles
               </p>
-              <p className="menu_item" onClick={() => navigate("/insurance")}>
-                Insurance
-              </p>
+
               <p className="menu_item" onClick={() => navigate("/contact")}>
                 Contact
               </p>

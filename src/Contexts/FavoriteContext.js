@@ -1,31 +1,35 @@
-import React, { createContext, useReducer } from "react";
-export const FavouriteContext = createContext();
+import React, { useReducer } from "react";
+export const FavoriteContext = React.createContext();
 const INIT_STATE = {
   favorites: null,
+  count: 0,
 };
 function reducer(state = INIT_STATE, action) {
+  console.log(action);
   switch (action.type) {
     case "GET_FAVORITES":
       return {
         ...state,
         favorites: action.payload,
+        count: action.payload.products.length,
       };
     default:
       return state;
   }
 }
-
-const FavouriteContextProvider = ({ children }) => {
+const FavoriteContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
   function addToFavorites(product) {
     let favorites = JSON.parse(localStorage.getItem("favorites"));
     if (!favorites) {
       favorites = {
         products: [],
+        totalPrice: 0,
       };
     }
     let newProduct = {
       item: product,
+      count: 1,
       subPrice: product.price,
     };
     const isProductInFavorites = favorites.products.some(
@@ -38,6 +42,7 @@ const FavouriteContextProvider = ({ children }) => {
     } else {
       favorites.products.push(newProduct);
     }
+
     localStorage.setItem("favorites", JSON.stringify(favorites));
     getFavorites();
   }
@@ -46,18 +51,26 @@ const FavouriteContextProvider = ({ children }) => {
     if (!favorites) {
       favorites = {
         products: [],
+        totalPrice: 0,
       };
     }
+    favorites.totalPrice = favorites.products.reduce((prev, curr) => {
+      // console.log(prev);
+      return prev + curr.subPrice;
+    }, 0);
+
     dispatch({
       type: "GET_FAVORITES",
       payload: favorites,
     });
+    console.log(favorites);
   }
   function deleteFromFavorites(id) {
     let favorites = JSON.parse(localStorage.getItem("favorites"));
     if (!favorites) {
       favorites = {
         products: [],
+        totalPrice: 0,
       };
     }
     favorites.products = favorites.products.filter(item => item.item.id !== id);
@@ -69,6 +82,7 @@ const FavouriteContextProvider = ({ children }) => {
     if (!favorites) {
       favorites = {
         products: [],
+        totalPrice: 0,
       };
     }
     const isProductInFavorites = favorites.products.some(
@@ -76,18 +90,34 @@ const FavouriteContextProvider = ({ children }) => {
     );
     return isProductInFavorites;
   }
+  function changeCount(count, id) {
+    if (count <= 0) {
+      return;
+    }
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
+    favorites.products = favorites.products.map(item => {
+      if (item.item.id === id) {
+        item.count = count;
+        item.subPrice = count * item.item.price;
+      }
+      return item;
+    });
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    getFavorites();
+  }
   return (
-    <FavouriteContext.Provider
+    <FavoriteContext.Provider
       value={{
-        favorites: state.fav,
+        favorites: state.favorites,
+        count: state.count,
         getFavorites,
         addToFavorites,
         deleteFromFavorites,
+        changeCount,
         checkProductInFavorites,
       }}>
       {children}
-    </FavouriteContext.Provider>
+    </FavoriteContext.Provider>
   );
 };
-
-export default FavouriteContextProvider;
+export default FavoriteContextProvider;

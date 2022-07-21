@@ -100,10 +100,7 @@ const Card = ({ item }) => {
               {item.is_favorite ? (
                 <BookmarkIcon className="product-info_icon" />
               ) : (
-                <BookmarkBorderIcon
-                  onClick={() => navigate("/favorites")}
-                  className="product-info_icon"
-                />
+                <BookmarkBorderIcon className="product-info_icon" />
               )}
             </IconButton>
             <IconButton
