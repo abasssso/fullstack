@@ -9,6 +9,7 @@ const INIT_STATE = {
   categories: [],
   sizes: [],
   brands: [],
+  images: [],
   oneProduct: null,
   favorites: [],
   favoritesPages: 0,
@@ -31,6 +32,9 @@ function reducer(state = INIT_STATE, action) {
       };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
+
+    case "GET_IMAGES":
+      return { ...state, images: action.payload };
     case "GET_SIZES":
       return { ...state, sizes: action.payload };
     case "GET_BRANDS":
@@ -65,6 +69,7 @@ const ProductsContextProvider = ({ children }) => {
         type: "GET_PRODUCTS",
         payload: res.data,
       });
+      // console.log(res)
     } catch (err) {
       console.log(err);
     }
@@ -109,6 +114,26 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
+  async function getImage() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/images/`, config);
+      dispatch({
+        type: "GET_IMAGES",
+        payload: res.data.results,
+      });
+      // console.log(res)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async function getBrand() {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -148,6 +173,28 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
+  async function createComment(newComment, navigate, id) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.post(
+        `${API}/products/${id}/comment/`,
+        newComment,
+        config
+      );
+      // console.log(res);
+      navigate("/products");
+      getProducts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
   async function deleteProduct(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -180,6 +227,7 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
+
   async function getOneProduct(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -222,6 +270,7 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
+
   async function toggleLike(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -297,9 +346,11 @@ const ProductsContextProvider = ({ children }) => {
         getSize,
         deleteImage,
         getBrand,
+        getImage,
         getFavorites,
         createProduct,
         deleteProduct,
+        createComment,
       }}>
       {children}
     </productsContext.Provider>

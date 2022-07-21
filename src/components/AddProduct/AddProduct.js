@@ -5,13 +5,13 @@ import {productsContext} from "../../Contexts/ProductsContext";
 
 const AddProduct = () => {
     const navigate = useNavigate();
-    const {getCategories, categories, createProduct,getSize,sizes,brands,getBrand} =
+    const {getCategories, categories, createProduct,getSize,sizes,brands,getBrand,images,getImage} =
         useContext(productsContext);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
-    const [images, setImages] = useState("");
+    const [image, setImage] = useState("");
     const [size, setSize] = useState("");
     const [brand, setBrand] = useState("");
 
@@ -24,6 +24,9 @@ const AddProduct = () => {
         getSize()
     },[])
 
+    useEffect(() => {
+        getImage()
+    },[])
     useEffect(()=>{
         getBrand()
     },[])
@@ -36,7 +39,7 @@ const AddProduct = () => {
         newProduct.append("description", description);
         newProduct.append("price", price);
         newProduct.append("category", category);
-        newProduct.append("images", images);
+        newProduct.append("images", image);
         newProduct.append("size", size);
         newProduct.append("brand", brand);
         createProduct(newProduct, navigate);
@@ -80,10 +83,10 @@ const AddProduct = () => {
                 </select>
                 <input
                     accept="image/*"
-                    key={images.id}
+                    key={image.id}
                     multiple
                     type="file"
-                    onChange={e => setImages(e.target.files[0])}
+                    onChange={e => setImage(e.target.files[0])}
                 />
                 <button onClick={handleSave}>
                     Save

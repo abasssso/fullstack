@@ -102,6 +102,8 @@ const AuthContextProvider = ({children}) => {
         navigate("/login");
     }
 
+
+
     return (
         <authContext.Provider
             value={{
