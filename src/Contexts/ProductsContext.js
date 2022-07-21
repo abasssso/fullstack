@@ -1,4 +1,4 @@
-import React, {useReducer} from "react";
+import React, { useReducer } from "react";
 import axios from "axios";
 
 export const productsContext = React.createContext();
@@ -47,8 +47,8 @@ function reducer(state = INIT_STATE, action) {
 
 const API = "http://18.197.23.213";
 
-const ProductsContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(reducer, INIT_STATE);
+const ProductsContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
     async function getProducts() {
         try {
@@ -70,45 +70,45 @@ const ProductsContextProvider = ({children}) => {
             console.log(err);
         }
     }
+  }
 
-    async function getCategories() {
-        try {
-            const tokens = JSON.parse(localStorage.getItem("tokens"));
-            const Authorization = `Bearer ${tokens.access}`;
-            const config = {
-                headers: {
-                    Authorization,
-                },
-            };
-            const res = await axios(`${API}/type/`, config);
-            dispatch({
-                type: "GET_CATEGORIES",
-                payload: res.data.results,
-            });
-            // console.log(res)
-        } catch (err) {
-            console.log(err);
-        }
+  async function getCategories() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/type/`, config);
+      dispatch({
+        type: "GET_CATEGORIES",
+        payload: res.data.results,
+      });
+      // console.log(res)
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    async function getSize() {
-        try {
-            const tokens = JSON.parse(localStorage.getItem("tokens"));
-            const Authorization = `Bearer ${tokens.access}`;
-            const config = {
-                headers: {
-                    Authorization,
-                },
-            };
-            const res = await axios(`${API}/size/`, config);
-            dispatch({
-                type: "GET_SIZES",
-                payload: res.data.results,
-            });
-            // console.log(res)
-        } catch (err) {
-            console.log(err);
-        }
+  async function getSize() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/size/`, config);
+      dispatch({
+        type: "GET_SIZES",
+        payload: res.data.results,
+      });
+      // console.log(res)
+    } catch (err) {
+      console.log(err);
     }
 
     async function getImage() {
@@ -150,25 +150,26 @@ const ProductsContextProvider = ({children}) => {
             console.log(err);
         }
     }
+  }
 
-    async function createProduct(newProduct, navigate) {
-        try {
-            const tokens = JSON.parse(localStorage.getItem("tokens"));
-            //config
-            const Authorization = `Bearer ${tokens.access}`;
-            const config = {
-                headers: {
-                    Authorization,
-                },
-            };
-            const res = await axios.post(`${API}/products/`, newProduct, config);
-            // console.log(res);
-            navigate("/products");
-            getProducts();
-        } catch (err) {
-            console.log(err);
-        }
+  async function createProduct(newProduct, navigate) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.post(`${API}/products/`, newProduct, config);
+      // console.log(res);
+      navigate("/products");
+      getProducts();
+    } catch (err) {
+      console.log(err);
     }
+  }
 
     async function createComment(newComment, navigate, id) {
         try {
@@ -243,27 +244,27 @@ const ProductsContextProvider = ({children}) => {
             console.log(err);
         }
     }
+  }
 
-    async function updateProduct(id, editedProduct, navigate) {
-        try {
-            const tokens = JSON.parse(localStorage.getItem("tokens"));
-            //config
-            const Authorization = `Bearer ${tokens.access}`;
-            const config = {
-                headers: {
-                    Authorization,
-                },
-            };
-            const res = await axios.patch(
-                `${API}/products/${id}/`,
-                editedProduct,
-                config
-            );
-            navigate("/products");
-            getProducts();
-        } catch (err) {
-            console.log(err);
-        }
+  async function updateProduct(id, editedProduct, navigate) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.patch(
+        `${API}/products/${id}/`,
+        editedProduct,
+        config
+      );
+      navigate("/products");
+      getProducts();
+    } catch (err) {
+      console.log(err);
     }
 
     async function toggleLike(id) {
@@ -282,50 +283,45 @@ const ProductsContextProvider = ({children}) => {
             console.log(err);
         }
     }
+  }
 
-    async function toggleFavorites(id) {
-        try {
-            const tokens = JSON.parse(localStorage.getItem("tokens"));
-            //config
-            const Authorization = `Bearer ${tokens.access}`;
-            const config = {
-                headers: {
-                    Authorization,
-                },
-            };
-            const res = await axios(
-                `${API}/products/${id}/favorite/`,
-                config
-            );
-            getProducts();
-            getFavorites();
-        } catch (err) {
-            console.log(err);
-        }
+  async function toggleFavorites(id) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/products/${id}/favorite/`, config);
+      getProducts();
+      getFavorites();
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    async function getFavorites() {
-        try {
-            const tokens = JSON.parse(localStorage.getItem("tokens"));
-            //config
-            const Authorization = `Bearer ${tokens.access}`;
-            const config = {
-                headers: {
-                    Authorization,
-                },
-            };
-            const res = await axios(
-                `${API}/favorites/`,
-                config
-            );
-            dispatch({
-                type: "GET_FAVORITES",
-                payload: res.data,
-            })
-        } catch (err) {
-            console.log(err)
-        }
+  async function getFavorites() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/favorites/`, config);
+      dispatch({
+        type: "GET_FAVORITES",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
     }
+  }
 
     return (
         <productsContext.Provider

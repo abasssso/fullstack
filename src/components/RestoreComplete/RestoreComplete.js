@@ -53,6 +53,6 @@ const RestoreComplete = () => {
             </div>
         </div>
     );
-};
 
+};
 export default RestoreComplete;

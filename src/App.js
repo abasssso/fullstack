@@ -1,4 +1,4 @@
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -9,6 +9,7 @@ import CommentContextProvider from "./Contexts/CommentContext";
 
 function App() {
     return (
+    <CartContextProvider>
         <CommentContextProvider>
         <AuthContextProvider>
             <ProductsContextProvider>
@@ -20,7 +21,9 @@ function App() {
             </ProductsContextProvider>
         </AuthContextProvider>
         </CommentContextProvider>
+    </CartContextProvider>
     );
+
 }
 
 export default App;
