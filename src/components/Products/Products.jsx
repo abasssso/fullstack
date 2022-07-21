@@ -34,25 +34,17 @@ const Products = () => {
       price_to: price[1],
     });
   }, [currentPage, search, price]);
-  console.log(products);
+
   return (
     <div>
       <button onClick={() => navigate("/add")}>Add product</button>
       <div>
         <input
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onClick={e => setSearch(e.target.value)}
           placeholder="search..."
           type="text"
         />
-      </div>
-      <div>
-        <input
-          value={price}
-          onClick={(e, value) => setPrice(e.target.value)}
-          type="checkbox"
-        />
-        <p>1000</p>
       </div>
       <div>
         <Slider
@@ -61,7 +53,7 @@ const Products = () => {
           }}
           transition={"1s"}
           value={price}
-          onChange={(e, value) => {
+          onChange={e => {
             setPrice(e.target.value);
           }}
           valueLabelDisplay="auto"

@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
 const Header = () => {
   const navigate = useNavigate();
-  const { currentUser, checkAuth, loading, handleLogout } =
+  const { currentUser, checkAuth, loading, handleLogout, enterProfile } =
     useContext(authContext);
   useEffect(() => {
     if (localStorage.getItem("tokens")) {
@@ -70,7 +70,7 @@ const Header = () => {
               <div className="navbar-right_user">
                 <PersonIcon />
 
-                <p>{currentUser}</p>
+                <p onClick={enterProfile}>{currentUser}</p>
 
                 <Button
                   className="logout-btn"
