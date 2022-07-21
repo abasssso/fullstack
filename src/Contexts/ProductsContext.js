@@ -11,7 +11,7 @@ const INIT_STATE = {
   brands: [],
   images: [],
   oneProduct: null,
-  favorites: [],
+  favorite: [],
   favoritesPages: 0,
 };
 
@@ -27,7 +27,7 @@ function reducer(state = INIT_STATE, action) {
     case "GET_FAVORITES":
       return {
         ...state,
-        favorites: action.payload.results,
+        favorite: action.payload.results,
         favoritesPages: Math.ceil(action.payload.count / 5),
       };
     case "GET_CATEGORIES":
@@ -316,7 +316,10 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      const res = await axios(`${API}/favorites/`, config);
+      const res = await axios(
+        `${API}/favorite/${window.location.search}`,
+        config
+      );
       dispatch({
         type: "GET_FAVORITES",
         payload: res.data,
@@ -334,7 +337,7 @@ const ProductsContextProvider = ({ children }) => {
         categories: state.categories,
         sizes: state.sizes,
         brands: state.brands,
-        favorites: state.favorites,
+        favorite: state.favorite,
         oneProduct: state.oneProduct,
         favoritesPages: state.favoritesPages,
         getProducts,

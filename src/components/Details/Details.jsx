@@ -26,7 +26,6 @@ const Details = () => {
         <p>{`title: ${oneProduct.title}`}</p>
 
         <p>{`user: ${oneProduct.user}`}</p>
-
         <p>{`views: ${oneProduct.views}`}</p>
       </Box>
     </Container>

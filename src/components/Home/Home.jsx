@@ -139,15 +139,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div>
-          <img
-            className="home__product-img"
-            src={blackImage}
-            alt=""
-            width={700}
-            height={1120}
-          />
-        </div>
       </div>
     </div>
   );
