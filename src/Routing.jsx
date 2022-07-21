@@ -14,6 +14,7 @@ import {authContext} from "./Contexts/AuthContext";
 import EditProduct from "./components/EditProduct/EditProduct";
 import RestorePass from "./components/RestorePass/RestorePass";
 import RestoreComplete from "./components/RestoreComplete/RestoreComplete";
+import Comments from "./components/Comments/Comments";
 
 const Routing = () => {
     const {loading, currentUser} = useContext(authContext);
@@ -32,6 +33,7 @@ const Routing = () => {
             <Route path="/register-success" element={currentUser ? (<Navigate to="/products" replace/>) : (<RegisterSuccess/>)}/>
             <Route path="/" element={<Home/>}/>
             <Route path="/products" element={<Products/>}/>
+            <Route path="/comments" element={<Comments/>}/>
             <Route path="/insurance" element={<Insurance/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/account" element={<Account/>}/>

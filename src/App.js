@@ -5,9 +5,11 @@ import Header from "./components/Header/Header";
 import Routing from "./Routing";
 import ProductsContextProvider from "./Contexts/ProductsContext";
 import AuthContextProvider from "./Contexts/AuthContext";
+import CommentContextProvider from "./Contexts/CommentContext";
 
 function App() {
     return (
+        <CommentContextProvider>
         <AuthContextProvider>
             <ProductsContextProvider>
                 <BrowserRouter>
@@ -17,6 +19,7 @@ function App() {
                 </BrowserRouter>
             </ProductsContextProvider>
         </AuthContextProvider>
+        </CommentContextProvider>
     );
 }
 

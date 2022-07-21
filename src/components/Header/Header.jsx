@@ -10,7 +10,7 @@ import { authContext } from "../../Contexts/AuthContext";
 import { Button } from "@mui/material";
 const Header = () => {
   const navigate = useNavigate();
-  const { currentUser, checkAuth, loading, handleLogout } =
+  const { currentUser, checkAuth, loading, handleLogout, enterProfile } =
     useContext(authContext);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const Header = () => {
               <div className="navbar-right_user">
                 <PersonIcon />
 
-                <p>{currentUser}</p>
+                <p onClick={enterProfile}>{currentUser}</p>
 
                 <Button
                   className="logout-btn"
