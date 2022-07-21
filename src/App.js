@@ -6,8 +6,8 @@ import Routing from "./Routing";
 import ProductsContextProvider from "./Contexts/ProductsContext";
 import AuthContextProvider from "./Contexts/AuthContext";
 import CommentContextProvider from "./Contexts/CommentContext";
-import FavouriteContextProvider from "./Contexts/favoriteContext";
 import CartContextProvider from "./Contexts/CartContext";
+import FavouriteContextProvider from "./Contexts/FavoriteContext";
 
 function App() {
   return (

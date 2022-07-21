@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-export const favouriteContext = createContext();
+export const FavouriteContext = createContext();
 const INIT_STATE = {
   fav: null,
 };
@@ -75,7 +75,7 @@ const FavouriteContextProvider = ({ children }) => {
     return isProductInFav;
   }
   return (
-    <favouriteContext.Provider
+    <FavouriteContext.Provider
       value={{
         fav: state.fav,
         getFav,
@@ -84,7 +84,7 @@ const FavouriteContextProvider = ({ children }) => {
         checkProductInFav,
       }}>
       {children}
-    </favouriteContext.Provider>
+    </FavouriteContext.Provider>
   );
 };
 
