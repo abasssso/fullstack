@@ -1,0 +1,83 @@
+.contact-container {
+  background-color: #111111;
+  color: white;
+  padding: 40px 170px;
+}
+.contact-message-box_phone {
+  /* margin: 100px; */
+  width: 460px;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: #cccccc;
+  padding: 100px;
+  line-height: 100px;
+  border-radius: 10px;
+}
+.contact-message-box {
+  display: flex;
+  margin: 150px;
+  /* border-radius: 100px; */
+}
+.message-box-phone_item {
+  display: flex;
+  /* justify-content: flex-start; */
+  line-height: 24px;
+  margin: 10px;
+  /* width: 576px; */
+  align-items: flex-start;
+}
+.message-box-phone_item svg {
+  margin-right: 10px;
+}
+.message-box-media {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.contact-message-box_h3 h3 {
+  color: white;
+  font-size: 30px;
+}
+.send_btn {
+  padding: 16px 32px;
+  background: linear-gradient(180deg, #ffbf00 0%, #f2a50c 100%);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: none;
+  margin-top: 20px;
+}
+
+.contact-message-box_inputs {
+  margin: 60px;
+  line-height: 50px;
+  /* display: flex; */
+  /* justify-content: center; */
+}
+.contact-message-box_inputs input {
+  background: #f7f7f7;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+  /* max-width: 300px; */
+  /* width: 200px; */
+}
+.contact-message-box-inputs_namephone {
+  display: flex;
+  flex-direction: row;
+  line-height: 20px;
+  justify-content: space-between;
+}
+.contact-message-box-inputs_namephone input {
+  width: 280px;
+  height: 48px;
+}
+
+.contact-message-box-inputs_email input {
+  width: 580px;
+  height: 80px;
+}
+.contact-message-box-inputs_message input {
+  width: 580px;
+  height: 160px;
+}

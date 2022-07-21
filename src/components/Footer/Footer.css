@@ -1,0 +1,24 @@
+.footer {
+  /* position: fixed; */
+  width: 100%;
+  bottom: 0;
+  background-color: black;
+  color: white;
+  padding: 50px;
+  line-height: 32px;
+}
+.footer-container {
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-around;
+}
+.footer-container-mid_media {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+}
+hr {
+  background: #111111;
+  margin: 20px 0px;
+}
