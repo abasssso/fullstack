@@ -58,6 +58,7 @@ const Routing = () => {
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/details/:id" element={<Details />} />
+      <Route path="/payment" element={<Payment />} />
     </Routes>
   );
 };

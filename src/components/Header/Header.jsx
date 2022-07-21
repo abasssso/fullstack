@@ -8,6 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { authContext } from "../../Contexts/AuthContext";
 import { Button } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import Loader from "../Loader/Loader";
 const Header = () => {
   const navigate = useNavigate();
   const { currentUser, checkAuth, loading, handleLogout, enterProfile } =
@@ -18,7 +19,7 @@ const Header = () => {
     }
   }, []);
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loader />;
   }
   return (
     <div>

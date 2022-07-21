@@ -30,7 +30,7 @@ const Details = () => {
       </Box>
     </Container>
   ) : (
-    <div>Loading ...</div>
+    <Loader />
   );
 };
 export default Details;

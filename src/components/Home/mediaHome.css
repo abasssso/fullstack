@@ -134,6 +134,7 @@
     .home__product-info {
       display: flex;
       flex-direction: column;
+
       /* margin-right: 70%; */
     }
   }
@@ -141,6 +142,7 @@
     .home__product-info1 {
       display: flex;
       flex-direction: column;
+
       margin-right: 120px;
       font-size: 20px;
     }
@@ -153,6 +155,7 @@
       font-size: medium;
     }
   }
+
   .home__product-text {
     display: flex;
     flex-direction: column;
