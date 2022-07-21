@@ -5,6 +5,7 @@ import Cart from "./components/Cart/Cart";
 import Contact from "./components/Contact/Contact";
 import Home from "./components/Home/Home";
 import Insurance from "./components/Insurance/Insurance";
+import Payment from "./components/Payment/Payment";
 import Products from "./components/Products/Products";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -17,6 +18,7 @@ import RestoreComplete from "./components/RestoreComplete/RestoreComplete";
 import Details from "./components/Details/Details";
 
 const Routing = () => {
+
   const { loading, currentUser } = useContext(authContext);
   if (loading) {
     return <h1>Loading . . .</h1>;
@@ -54,9 +56,11 @@ const Routing = () => {
       <Route path="/account" element={<Account />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/edit/:id" element={<EditProduct />} />
+      <Route path="/payment" element={<Payment />} />
       <Route path="/details/:id" element={<Details />} />
     </Routes>
   );
+
 };
 
 export default Routing;
