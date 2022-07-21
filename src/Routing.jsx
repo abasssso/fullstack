@@ -16,32 +16,52 @@ import EditProduct from "./components/EditProduct/EditProduct";
 import RestorePass from "./components/RestorePass/RestorePass";
 import RestoreComplete from "./components/RestoreComplete/RestoreComplete";
 import Comments from "./components/Comments/Comments";
+import Details from "./components/Details/Details";
+import Favorites from "./components/Favorites/Favorites";
 
 const Routing = () => {
-    const {loading, currentUser} = useContext(authContext);
-    if (loading) {
-        return <h1>Loading . . .</h1>;
-    }
-    // console.log(currentUser);
-    return (
-        <Routes>
-            <Route path="/login" element={currentUser ? <Navigate to="products" replace/> : <Login/>}/>
-            <Route path="/restore-pass" element={ <RestorePass/>} />
-            <Route path="/restore-complete" element={ <RestoreComplete/>} />
-            <Route path="/add" element={currentUser ? <AddProduct/> : <Login/>}/>
-            <Route path="/register" element={currentUser ? <Navigate to="/products" replace/> : <Register/>}
-            />
-            <Route path="/register-success" element={currentUser ? (<Navigate to="/products" replace/>) : (<RegisterSuccess/>)}/>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/products" element={<Products/>}/>
-            <Route path="/comments" element={<Comments/>}/>
-            <Route path="/insurance" element={<Insurance/>}/>
-            <Route path="/contact" element={<Contact/>}/>
-            <Route path="/account" element={<Account/>}/>
-            <Route path="/cart" element={<Cart/>}/>
-            <Route path="/edit/:id" element={<EditProduct/>}/>
-        </Routes>
-    );
+  const { loading, currentUser } = useContext(authContext);
+  if (loading) {
+    return <h1>Loading . . .</h1>;
+  }
+  // console.log(currentUser);
+  return (
+    <Routes>
+      <Route
+        path="/login"
+        element={currentUser ? <Navigate to="products" replace /> : <Login />}
+      />
+      <Route path="/restore-pass" element={<RestorePass />} />
+      <Route path="/restore-complete" element={<RestoreComplete />} />
+      <Route path="/add" element={currentUser ? <AddProduct /> : <Login />} />
+      <Route
+        path="/register"
+        element={
+          currentUser ? <Navigate to="/products" replace /> : <Register />
+        }
+      />
+      <Route
+        path="/register-success"
+        element={
+          currentUser ? (
+            <Navigate to="/products" replace />
+          ) : (
+            <RegisterSuccess />
+          )
+        }
+      />
+      <Route path="/" element={<Home />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/comments" element={<Comments />} />
+      <Route path="/insurance" element={<Insurance />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/account" element={<Account />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/edit/:id" element={<EditProduct />} />
+      <Route path="/favorites" element={<Favorites />} />
+      <Route path="/details/:id" element={<Details />} />
+    </Routes>
+  );
 };
 
 export default Routing;
