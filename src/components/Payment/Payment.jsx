@@ -7,8 +7,8 @@ const Payment = () => {
   return (
     <div className="container">
       <div className="black">
-        <h4>COTAÇÕES NO SEU EMAIL</h4>
-        <h1>solicite um orçamento.</h1>
+        <h4>payment page</h4>
+        <h1>solicite um cycle.</h1>
       </div>
       <div className="white">
         <div className="payment_form">
@@ -50,7 +50,7 @@ const Payment = () => {
             <p className="payment_form_right_p">Dados Pessoais</p>
             <Box sx={{ display: "flex" }}>
               <TextField sx={{ marginRight: "20px" }} label="Name" />
-              <TextField label="Sobrenome" />
+              <TextField label="Last Name" />
             </Box>
             <p>CPF</p>
             <TextField fullWidth label="0000-0000-0000-0000" />
@@ -64,7 +64,7 @@ const Payment = () => {
                 marginRight: "20px",
               }}>
               <TextField sx={{ marginRight: "20px" }} label="CEP" />
-              <TextField label="Número" />
+              <TextField label="Number" />
             </Box>
             <Box
               sx={{
