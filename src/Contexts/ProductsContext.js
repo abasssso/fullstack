@@ -11,7 +11,7 @@ const INIT_STATE = {
   brands: [],
   images: [],
   oneProduct: null,
-  favorites: [],
+  favorite: [],
   favoritesPages: 0,
 };
 
@@ -27,11 +27,12 @@ function reducer(state = INIT_STATE, action) {
     case "GET_FAVORITES":
       return {
         ...state,
-        favorites: action.payload.results,
+        favorite: action.payload.results,
         favoritesPages: Math.ceil(action.payload.count / 5),
       };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
+
     case "GET_IMAGES":
       return { ...state, images: action.payload };
     case "GET_SIZES":
@@ -113,7 +114,6 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-
   async function getImage() {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -195,7 +195,6 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-
   async function deleteProduct(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -212,7 +211,6 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-
   async function deleteImage(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -318,7 +316,10 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      const res = await axios(`${API}/favorites/`, config);
+      const res = await axios(
+        `${API}/favorite/${window.location.search}`,
+        config
+      );
       dispatch({
         type: "GET_FAVORITES",
         payload: res.data,
@@ -336,7 +337,7 @@ const ProductsContextProvider = ({ children }) => {
         categories: state.categories,
         sizes: state.sizes,
         brands: state.brands,
-        favorites: state.favorites,
+        favorite: state.favorite,
         oneProduct: state.oneProduct,
         favoritesPages: state.favoritesPages,
         getProducts,

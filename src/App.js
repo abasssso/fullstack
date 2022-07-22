@@ -7,25 +7,23 @@ import ProductsContextProvider from "./Contexts/ProductsContext";
 import AuthContextProvider from "./Contexts/AuthContext";
 import CommentContextProvider from "./Contexts/CommentContext";
 import CartContextProvider from "./Contexts/CartContext";
-import FavouriteContextProvider from "./Contexts/FavoriteContext";
+import FavoriteContextProvider from "./Contexts/FavoriteContext";
 
 function App() {
   return (
-    <FavouriteContextProvider>
-      <CartContextProvider>
-        <CommentContextProvider>
-          <AuthContextProvider>
-            <ProductsContextProvider>
-              <BrowserRouter>
-                <Header />
-                <Routing />
-                <Footer />
-              </BrowserRouter>
-            </ProductsContextProvider>
-          </AuthContextProvider>
-        </CommentContextProvider>
-      </CartContextProvider>
-    </FavouriteContextProvider>
+    <CartContextProvider>
+      <CommentContextProvider>
+        <AuthContextProvider>
+          <ProductsContextProvider>
+            <BrowserRouter>
+              <Header />
+              <Routing />
+              <Footer />
+            </BrowserRouter>
+          </ProductsContextProvider>
+        </AuthContextProvider>
+      </CommentContextProvider>
+    </CartContextProvider>
   );
 }
 

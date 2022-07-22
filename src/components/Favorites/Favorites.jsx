@@ -1,16 +1,12 @@
 import { Box, Container, Pagination } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { FavoriteContext } from "../../Contexts/FavoriteContext";
 import { productsContext } from "../../Contexts/ProductsContext";
-import Card from "../Card/Card";
 
 const Favorites = () => {
-  const { toggleFavourites } = useContext(productsContext);
-  const { getFavorites, favorites, favoritesPages } =
+  const { toggleFavorites, getFavorites, favorite, favoritesPages } =
     useContext(productsContext);
-  // useEffect(() => {
-  //   getFavorites();
-  // }, []);
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
@@ -24,16 +20,26 @@ const Favorites = () => {
       page: currentPage,
     });
   }, [currentPage]);
+  console.log(favorite);
   return (
-    <Container>
-      <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
-        {favorites.map(item => (
+    <div>
+      {/* <div display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
+        {favorites.products.map(item => (
           // <div  />
-          <div key={item.id}>{item.item.title}</div>
+          <div key={item.item.id}>
+            <p>{item.item.title}</p>
+          </div>
         ))}
-      </Box>
-      <Box display={"flex"} justifyContent={"center"}>
-        ff
+      </div> */}
+      {/* {favorite.results.map(item => (
+        <div key={item.item.id}>
+          <p>p</p>
+        </div>
+      ))} */}
+      {/* <p>{favorite.favorite.map(item => console.log(item))}</p> */}
+      {/* <p>{item.item.title}</p>  */}
+
+      <div display={"flex"} justifyContent={"center"}>
         <Pagination
           count={favoritesPages}
           page={currentPage}
@@ -41,8 +47,8 @@ const Favorites = () => {
           variant="outlined"
           color="primary"
         />
-      </Box>
-    </Container>
+      </div>
+    </div>
   );
 };
 

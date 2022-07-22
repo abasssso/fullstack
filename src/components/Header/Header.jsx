@@ -8,6 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { authContext } from "../../Contexts/AuthContext";
 import { Button } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import Loader from "../Loader/Loader";
 const Header = () => {
   const navigate = useNavigate();
   const { currentUser, checkAuth, loading, handleLogout, enterProfile } =
@@ -18,7 +19,7 @@ const Header = () => {
     }
   }, []);
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loader />;
   }
   return (
     <div>
@@ -43,8 +44,8 @@ const Header = () => {
                 <li>
                   <p
                     className="menu_item"
-                    onClick={() => navigate("/insurance")}>
-                    Insurance
+                    onClick={() => navigate("/favorites")}>
+                    Favorites
                   </p>
                 </li>
                 <li>
@@ -61,9 +62,7 @@ const Header = () => {
               <p className="menu_item" onClick={() => navigate("/products")}>
                 Bicycles
               </p>
-              <p className="menu_item" onClick={() => navigate("/insurance")}>
-                Insurance
-              </p>
+
               <p className="menu_item" onClick={() => navigate("/contact")}>
                 Contact
               </p>
@@ -80,6 +79,7 @@ const Header = () => {
               </div>
 
               <ShoppingCartIcon onClick={() => navigate("/cart")} />
+              <StarRateIcon onClick={() => navigate("/favorites")} />
             </div>
           </div>
         </div>
@@ -95,10 +95,11 @@ const Header = () => {
             </div>
             <div className="navbar-right">
               <p onClick={() => navigate("/login/products")}>Bicycles</p>
-              <p onClick={() => navigate("/insurance")}>Insurance</p>
+              <p onClick={() => navigate("/favorites")}>Favorites</p>
               <p onClick={() => navigate("/contact")}>Contact</p>
               <PersonIcon onClick={() => navigate("/register")} />
               <ShoppingCartIcon onClick={() => navigate("/cart")} />
+              <p>cmkd</p>
             </div>
           </div>
         </div>

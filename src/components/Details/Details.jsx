@@ -14,28 +14,23 @@ const Details = () => {
   }, []);
 
   return oneProduct ? (
-      <Container>
-        <Box>
-          <h1>hello</h1>
-          {oneProduct.images.map(img => (
-              <div key={img.id}>
-                <img src={img.image} width="50%" alt="bike" />
-              </div>
-          ))}
-          <p>{`price: ${oneProduct.price}`}</p>
-          <p>{`description: ${oneProduct.description}`}</p>
-          <p>{`title: ${oneProduct.title}`}</p>
-
-          <p>{`user: ${oneProduct.user}`}</p>
-
-          <p>{`views: ${oneProduct.views}`}</p>
-        </Box>
-        <div>
-
-        </div>
-      </Container>
+    <Container>
+      <Box>
+        <h1>hello</h1>
+        {oneProduct.images.map(img => (
+          <div key={img.id}>
+            <img src={img.image} width="50%" alt="bike" />
+          </div>
+        ))}
+        <p>{`price: ${oneProduct.price}`}</p>
+        <p>{`description: ${oneProduct.description}`}</p>
+        <p>{`title: ${oneProduct.title}`}</p>
+        <p>{`user: ${oneProduct.user}`}</p>
+        <p>{`views: ${oneProduct.views}`}</p>
+      </Box>
+    </Container>
   ) : (
-      <div>Loading ...</div>
+    <Loader />
   );
 };
 export default Details;

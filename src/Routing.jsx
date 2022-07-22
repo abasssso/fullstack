@@ -4,7 +4,6 @@ import Account from "./components/Account/Account";
 import Cart from "./components/Cart/Cart";
 import Contact from "./components/Contact/Contact";
 import Home from "./components/Home/Home";
-import Insurance from "./components/Insurance/Insurance";
 import Payment from "./components/Payment/Payment";
 import Products from "./components/Products/Products";
 import Login from "./components/Login/Login";
@@ -53,7 +52,6 @@ const Routing = () => {
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<Products />} />
       <Route path="/comments" element={<Comments />} />
-      <Route path="/insurance" element={<Insurance />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/account" element={<Account />} />
       <Route path="/cart" element={<Cart />} />
