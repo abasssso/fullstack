@@ -30,12 +30,21 @@ const EditProduct = ({pov}) => {
     const [images, setImages] = useState("");
 
     useEffect(() => {
-        getCategories();
         getOneProduct(id);
-        getSize();
-        getBrand();
-        getProducts();
     }, []);
+
+    useEffect(() =>{
+        getProducts()
+    },[])
+    useEffect(() =>{
+        getCategories()
+    },[])
+    useEffect(() =>{
+        getSize()
+    },[])
+    useEffect(() =>{
+        getBrand()
+    },[])
 
     useEffect(() => {
         if (oneProduct) {

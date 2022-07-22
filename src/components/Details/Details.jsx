@@ -6,8 +6,9 @@ import Loader from "../Loader/Loader";
 
 const Details = () => {
   const { id } = useParams();
-  const { oneProduct, getOneProduct } = useContext(productsContext);
-  console.log(oneProduct);
+  const { oneProduct, getOneProduct, createComment } = useContext(productsContext);
+
+
   useEffect(() => {
     getOneProduct(id);
   }, []);
@@ -29,6 +30,9 @@ const Details = () => {
 
           <p>{`views: ${oneProduct.views}`}</p>
         </Box>
+        <div>
+
+        </div>
       </Container>
   ) : (
       <div>Loading ...</div>

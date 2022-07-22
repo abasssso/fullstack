@@ -128,8 +128,7 @@ const Card = ({ item }) => {
                 <EditIcon className="product-info_icon" />
               </IconButton>
             </div>
-          ) : // <div>bchd</div>
-          null}
+          ) : null}
           <button
             className="info-btn"
             onClick={() => navigate(`/details/${item.id}`)}>

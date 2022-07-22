@@ -5,7 +5,7 @@ import {productsContext} from "../../Contexts/ProductsContext";
 
 const AddProduct = () => {
     const navigate = useNavigate();
-    const {getCategories, categories, createProduct,getSize,sizes,brands,getBrand,images,getImage} =
+    const {getCategories,getProducts, categories, createProduct,getSize,sizes,brands,getBrand,images,getImage} =
         useContext(productsContext);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -15,6 +15,9 @@ const AddProduct = () => {
     const [size, setSize] = useState("");
     const [brand, setBrand] = useState("");
 
+    // useEffect(() =>{
+    //     getProducts()
+    // },[])
 
     useEffect(() => {
         getCategories();
@@ -62,8 +65,8 @@ const AddProduct = () => {
                     placeholder="Description"
                     type="text"/>
                 <input
-                    value={price}
-                    onChange={e => setPrice(e.target.value)}
+                    value={+price}
+                    onChange={e => setPrice(+e.target.value)}
                     placeholder="price"
                     type="text"/>
                 <select onChange={e => setSize(e.target.value)}>
@@ -83,8 +86,6 @@ const AddProduct = () => {
                 </select>
                 <input
                     accept="image/*"
-                    key={image.id}
-                    multiple
                     type="file"
                     onChange={e => setImage(e.target.files[0])}
                 />
