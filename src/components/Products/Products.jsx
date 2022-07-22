@@ -1,39 +1,34 @@
-import React, { useContext, useState, useEffect } from "react";
-import { productsContext } from "../../Contexts/ProductsContext";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import React, {useContext, useState, useEffect} from "react";
+import {productsContext} from "../../Contexts/ProductsContext";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import Card from "../Card/Card";
 import { Pagination, Slider } from "@mui/material";
 import "./Products.css";
 const Products = () => {
-  const navigate = useNavigate();
-  const { getProducts, products, pages } = useContext(productsContext);
+    const navigate = useNavigate();
+    const {getProducts, products, pages} = useContext(productsContext);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
-  const [search, setSearch] = useState(
-    searchParams.get("search") ? searchParams.get("search") : ""
-  );
+    const [search, setSearch] = useState(
+        searchParams.get("search") ? searchParams.get("search") : "");
 
-  const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
 
-  const [price, setPrice] = useState([1, 10000]);
+    const [price, setPrice] = useState([1, 10000]);
 
-  console.log(currentPage);
+    useEffect(() => {
+        getProducts();
+    }, [searchParams]);
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-  useEffect(() => {
-    getProducts();
-  }, [searchParams]);
-  useEffect(() => {
-    setSearchParams({
-      page: currentPage,
-      search: search,
-      price_from: price[0],
-      price_to: price[1],
-    });
-  }, [currentPage, search, price]);
+    useEffect(() => {
+        setSearchParams({
+            page: currentPage,
+            search: search,
+            price_from: price[0],
+            price_to: price[1],
+        });
+    }, [currentPage, search, price]);
 
   return (
     <div>

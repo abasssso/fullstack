@@ -6,9 +6,11 @@ import TextField from "@mui/material/TextField";
 import "../AddProduct/AddProduct.css";
 
 const AddProduct = () => {
+
   const navigate = useNavigate();
   const {
     getCategories,
+      getProducts,
     categories,
     createProduct,
     getSize,
@@ -25,6 +27,11 @@ const AddProduct = () => {
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
   const [brand, setBrand] = useState("");
+
+
+    useEffect(() =>{
+        getProducts()
+    },[])
 
   useEffect(() => {
     getCategories();
@@ -88,7 +95,6 @@ const AddProduct = () => {
               variant="outlined"
             />
           </Box>
-
           <Box
             sx={{
               display: "flex",
